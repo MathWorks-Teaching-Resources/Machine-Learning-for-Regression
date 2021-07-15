@@ -1,4 +1,4 @@
-# Machine Learning for Regression [![View <File Exchange Title> on File Exchange](https://github.com/MathWorks-Teaching-Resources/Machine-Learning-for-Regression)
+# Machine Learning for Regression [![View Machine Learning for Regression on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/95903-machine-learning-for-regression) 
 **Curriculum Module**  
 _Created with R2021a. Compatible with R2021a and later releases._  
 
