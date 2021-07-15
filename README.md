@@ -46,7 +46,7 @@ A supplementary script to download the external electricity load data from [New 
 These two scripts contain ideas to expand on the practical problem presented in `loadForecastRegression.mlx`. Working through the suggestions requires some independent exploration and active learning. `FE1_programmaticML.mlx` encourages students to write their own machine learning algorithm, and `FE2_loadForecastDL.mlx` begins to explore deep learning for load forecasting.  
 
 ## Products ##
-MATLAB, Statistics and Machine Learning Toolbox™
+MATLAB, Statistics and Machine Learning Toolbox™, Deep Learning Toolbox™
 
 ## License ##
 The license for this module is available in the LICENSE.TXT file in this GitHub repository.
