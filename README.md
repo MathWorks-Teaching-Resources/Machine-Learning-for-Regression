@@ -11,7 +11,7 @@ The instructions inside the live scripts will guide you through the activities a
 
 ## Suggested Prework ## 
 [MATLAB Onramp](https://www.mathworks.com/learn/tutorials/matlab-onramp.html)—a free two-hour introductory tutorial to learn the essentials of MATLAB®. Additional programming skills (see [MATLAB Fundamentals](https://www.mathworks.com/training-schedule/matlab-fundamentals.html)) are beneficial, but not assumed in the tasks and instructions.  
-[Regression Basics](https://www.mathworks.com/academia/courseware/regression-basics.html)—a curriculum module to cover the fundamentals of regression analyis.  
+[Regression Basics](https://www.mathworks.com/matlabcentral/fileexchange/93435-regression-basics)—a curriculum module to cover the fundamentals of regression analyis.  
 
 No prior exposure to the subject of machine learning is assumed.    
 
