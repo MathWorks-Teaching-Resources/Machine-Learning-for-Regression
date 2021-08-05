@@ -5,7 +5,7 @@ _Created with R2021a. Compatible with R2021a and later releases._
 ## Description ##
 This package contains several [live scripts](https://www.mathworks.com/products/matlab/live-editor.html) and supporting files that teach the basics of machine learning for regression. The materials are designed to be flexible and can be easily modified to accommodate a variety of teaching and learning methods. These include a brief background, interactive illustrations, tasks, reflection questions, a real-world application in electricity load forecasting, and guided exercises for the different concepts explored. The module can be used to provide a light introduction to the terminology and concepts in machine learning, centered around regression. The overarching goal is to familiarize students with the typical workflow, setup, and considerations involved in solving regression problems with machine learning.  
 
-The instructions inside the live scripts will guide you through the activities and exercises. Get started with each live script by running it one section at a time. To stop running the script or a section midway (for example, when an animation is in progress), use the **Stop** button in the **RUN** section of the Live Editor tab in the MATLAB toolstrip.  
+The instructions inside the live scripts will guide you through the activities and exercises. Get started with each live script by running it one section at a time. To stop running the script or a section midway (for example, when an animation is in progress), use the **Stop** button in the **Run** section of the **Live Editor** tab in the MATLAB toolstrip.  
 
 <img src="https://user-images.githubusercontent.com/81376570/124604883-6261a280-de39-11eb-8928-7df4d87ccb58.gif" height = "600"/>  
 
