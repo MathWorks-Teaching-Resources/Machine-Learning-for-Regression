@@ -1,4 +1,4 @@
-# Machine Learning for Regression [![View <File Exchange Title> on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/95903-machine-learning-for-regression) or [Open in MATLAB Online](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj)
+# Machine Learning for Regression [![View <File Exchange Title> on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/95903-machine-learning-for-regression) or [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj)
 **Curriculum Module**  
 _Created with R2021a. Compatible with R2021a and later releases._  
 
@@ -16,7 +16,7 @@ The instructions inside the live scripts will guide you through the activities a
 No prior exposure to the subject of machine learning is assumed.    
 
 ## Details ##
-**`machineLearningIntro.mlx`** [Open in MATLAB Online](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=machineLearningIntro.mlx)
+**`machineLearningIntro.mlx`** [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=machineLearningIntro.mlx)
 An interactive lesson that introduces some key concepts in machine learning, along with a few regression models. It contains many independent introductory sections that are easy to edit.
 
 **Learning Goals**
@@ -28,7 +28,7 @@ An interactive lesson that introduces some key concepts in machine learning, alo
 - Explain overfitting and underfitting in machine learning, and identify at least two ways of tackling these problems.  
 
 ## ##
-**`loadForecastRegression.mlx`, `loadForecastRegression_soln.mlx`** [Open in MATLAB Online](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=loadForecastRegression.mlx)  
+**`loadForecastRegression.mlx`, `loadForecastRegression_soln.mlx`** [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=loadForecastRegression.mlx)  
 Students are guided through the steps to apply machine learning for electricity load forecasting using real-world data. This script can be used in two different modes: controls-only or with complete code.
 
 **Learning Goals**
@@ -38,11 +38,11 @@ Students are guided through the steps to apply machine learning for electricity 
 - Test and evaluate the trained model to make predictions.  
 
 ## ##
-**`electricityLoadDataML.mlx`** [Open in MATLAB Online](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=electricityLoadDataML.mlx)  
+**`electricityLoadDataML.mlx`** [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=electricityLoadDataML.mlx)  
 A supplementary script to download the external electricity load data from [New York ISO](http://mis.nyiso.com/public/) for use in `loadForecastRegression.mlx`. This script contains the code for downloading, organizing, formatting, and cleaning up the raw data.  
 
 ## ##
-**`FE1_programmaticML.mlx`, `FE2_loadForecastDL.mlx`** [Open in MATLAB Online](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=FE1_programmaticML.mlx)  
+**`FE1_programmaticML.mlx`, `FE2_loadForecastDL.mlx`** [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=FE1_programmaticML.mlx)  
 These two scripts contain ideas to expand on the practical problem presented in `loadForecastRegression.mlx`. Working through the suggestions requires some independent exploration and active learning. `FE1_programmaticML.mlx` encourages students to write their own machine learning algorithm, and `FE2_loadForecastDL.mlx` begins to explore deep learning for load forecasting.  
 
 ## Products ##
