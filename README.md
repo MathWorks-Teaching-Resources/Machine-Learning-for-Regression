@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 
 <a name="T_DEF03274"></a>
 # <span style="color:rgb(213,80,0)">Machine Learning for Regression</span>
 <a name="H_053613DF"></a>
-=======
-# Machine Learning for Regression [![View <File Exchange Title> on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/95903-machine-learning-for-regression) or [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj)
-**Curriculum Module**  
-_Created with R2021a. Compatible with R2021a and later releases._  
->>>>>>> 5100b76248ef69c8904f90da6cf16b39d53b901a
 
 [![View on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/95903-machine-learning-for-regression) or [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj)
 
@@ -15,7 +9,6 @@ _Created with R2021a. Compatible with R2021a and later releases._
 
 **Curriculum Module**
 
-<<<<<<< HEAD
 _Created with R2021a. Compatible with R2021a and later releases._
 
 # Information
@@ -100,52 +93,3 @@ Looking for more? Find an issue? Have a suggestion? Please contact the [MathWork
  *©* Copyright 2023 The MathWorks™, Inc
 
 
-=======
-## Suggested Prework ## 
-[MATLAB Onramp](https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted)—a free two-hour introductory tutorial to learn the essentials of MATLAB®. Additional programming skills (see [MATLAB Fundamentals](https://matlabacademy.mathworks.com/details/matlab-fundamentals/mlbe)) are beneficial, but not assumed in the tasks and instructions.  
-[Regression Basics](https://www.mathworks.com/matlabcentral/fileexchange/93435-regression-basics)—a curriculum module to cover the fundamentals of regression analyis.  
-
-No prior exposure to the subject of machine learning is assumed.    
-
-## Details ##
-**`machineLearningIntro.mlx`** [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=machineLearningIntro.mlx)
-An interactive lesson that introduces some key concepts in machine learning, along with a few regression models. It contains many independent introductory sections that are easy to edit.
-
-**Learning Goals**
-- State the difference between regression, classification, and clustering problems.  
-- Outline the common steps involved in applying machine learning techniques.
-- Define feature engineering and feature extraction.
-- Formulate regression as a machine learning problem.
-- Identify and use the different machine learning models commonly used for regression.
-- Explain overfitting and underfitting in machine learning, and identify at least two ways of tackling these problems.  
-
-## ##
-**`loadForecastRegression.mlx`, `loadForecastRegression_soln.mlx`** [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=loadForecastRegression.mlx)  
-Students are guided through the steps to apply machine learning for electricity load forecasting using real-world data. This script can be used in two different modes: controls-only or with complete code.
-
-**Learning Goals**
-- Apply the steps in the machine learning workflow to solve a practical problem in time series forecasting.
-- Formulate the time series forecasting problem as a machine learning problem by engineering appropriate features.
-- Validate and compare different types of regression models.
-- Test and evaluate the trained model to make predictions.  
-
-## ##
-**`electricityLoadDataML.mlx`** [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=electricityLoadDataML.mlx)  
-A supplementary script to download the external electricity load data from [New York ISO](http://mis.nyiso.com/public/) for use in `loadForecastRegression.mlx`. This script contains the code for downloading, organizing, formatting, and cleaning up the raw data.  
-
-## ##
-**`FE1_programmaticML.mlx`, `FE2_loadForecastDL.mlx`** [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=FE1_programmaticML.mlx)  
-These two scripts contain ideas to expand on the practical problem presented in `loadForecastRegression.mlx`. Working through the suggestions requires some independent exploration and active learning. `FE1_programmaticML.mlx` encourages students to write their own machine learning algorithm, and `FE2_loadForecastDL.mlx` begins to explore deep learning for load forecasting.  
-
-## Products ##
-MATLAB, Statistics and Machine Learning Toolbox™
-
-## License ##
-The license for this module is available in the LICENSE.TXT file in this GitHub repository.
-
-## Support ##
-Have any questions or feedback? Contact the [MathWorks online teaching team](mailto:onlineteaching@mathworks.com).
-
-# #
-_Copyright 2021 The MathWorks, Inc._
->>>>>>> 5100b76248ef69c8904f90da6cf16b39d53b901a
