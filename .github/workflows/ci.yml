@@ -29,7 +29,7 @@ jobs:
       - name: Check ver
         uses: matlab-actions/run-command@v1
         with:
-          command: ver
+          command: disp(getenv)
 
       # Run all the tests
       - name: Run SmokeTests
