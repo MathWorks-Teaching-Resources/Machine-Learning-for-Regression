@@ -25,6 +25,12 @@ jobs:
         with:
           release: ${{ matrix.MATLABVersion }}
 
+      # Check instal
+      - name: Check ver
+        uses: matlab-actions/run-command@v1
+        with:
+          command: ver
+
       # Run all the tests
       - name: Run SmokeTests
         uses: matlab-actions/run-command@v1
