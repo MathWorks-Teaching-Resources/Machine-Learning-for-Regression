@@ -21,7 +21,7 @@ if size(Results,1) >= 1
     Badge.color = "success"
     Badge.message = join(Version," | ");
 else
-    Badge.color = "failure";
+    Badge.color = "critical";
     Badge.message = "Pipeline fails";
 end
 Badge = jsonencode(Badge);
