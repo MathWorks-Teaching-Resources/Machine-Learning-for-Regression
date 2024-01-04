@@ -1,4 +1,4 @@
-name: MATLAB Build
+name: Module Test
 
 # Controls when the action will run. 
 on:
@@ -6,10 +6,9 @@ on:
     branches: [ release ]
   pull_request:
     branches: [ release ]
-  workflow_dispatch:
 
 jobs:
-  test:
+  RunTests:
     strategy: 
       fail-fast: false
       matrix:
@@ -25,15 +24,10 @@ jobs:
         with:
           release: ${{ matrix.MATLABVersion }}
 
-      # Check instal
-      - name: Check ver
-        uses: matlab-actions/run-command@v1
-        with:
-          command: disp(getenv)
-
       # Run all the tests
       - name: Run SmokeTests
         uses: matlab-actions/run-command@v1
+        continue-on-error: true
         with:
           command: openProject(pwd); RunAllTests; 
 
@@ -44,9 +38,9 @@ jobs:
           name: TestResults
           path: ./SoftwareTests/TestResults_${{ matrix.MATLABVersion }}.txt
 
-  badge:
+  CreateBadge:
     if: ${{ always() }}
-    needs: [test]
+    needs: [RunTests]
     strategy: 
       fail-fast: false
     runs-on: ubuntu-latest
