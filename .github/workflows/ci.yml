@@ -27,16 +27,17 @@ jobs:
       # Run all the tests
       - name: Run SmokeTests
         uses: matlab-actions/run-command@v1
-        continue-on-error: true
         with:
           command: openProject(pwd); RunAllTests; 
 
       # Upload the test results as artifact
       - name: Upload TestResults
+        if: always()
         uses: actions/upload-artifact@v3.1.3
         with:
           name: TestResults
           path: ./SoftwareTests/TestResults_${{ matrix.MATLABVersion }}.txt
+
 
   CreateBadge:
     if: ${{ always() }}
