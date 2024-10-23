@@ -48,7 +48,7 @@ Ensure you have all the required products (listed below) installed. If you need 
 
 ## Products
 
-MATLAB® is used throughout. Tools from Statistics and Machine Learning Toolbox™, Deep Learning Toolbox™, and Econometrics Toolbox™ are used frequently as well. Parallel Computing Toolbox™ is utilized specifically for the [parfor](https://www.mathworks.com/help/parallel-computing/parfor.html) function.
+MATLAB® is used throughout. Tools from Statistics and Machine Learning Toolbox™, Deep Learning Toolbox™, and Econometrics Toolbox™ are used frequently as well. Parallel Computing Toolbox™ is utilized specifically for the [parfor](https://www.mathworks.com/help/parallel-computing/parfor.html) function. Curve Fitting Toolbox™ is used specifically for the [fittype](https://www.mathworks.com/help/curvefit/fittype.html) function.
 
 
 # Scripts
