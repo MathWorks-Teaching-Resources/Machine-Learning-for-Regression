@@ -51,6 +51,7 @@ jobs:
       # Run all the tests
       - name: Run SmokeTests
         uses: matlab-actions/run-command@v2
+        timeout-minutes: 10
         with:
           command: openProject(pwd); RunAllTests; 
 
