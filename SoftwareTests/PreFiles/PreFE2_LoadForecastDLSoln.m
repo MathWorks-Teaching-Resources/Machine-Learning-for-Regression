@@ -2,4 +2,5 @@
 % ---- Known Issues     -----
 KnownIssuesID = "";
 % ---- Pre-run commands -----
- analyzeNetwork = @(x)disp("(Don't) Open Deep Learning Network Analyzer app here...");
+analyzeNetwork = @(x)disp("(Don't) Open Deep Learning Network Analyzer app here...");
+
