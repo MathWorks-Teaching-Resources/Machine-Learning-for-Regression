@@ -24,7 +24,7 @@ classdef ProjectStartupApp < matlab.apps.AppBase
     properties (Access = private)
         GitHubOrganization = "MathWorks-Teaching-Resources"; % Description
         GitHubRepository = "Machine-Learning-for-Regression";
-        ImagePath {mustBeFile} = fullfile("Images","MLforRegression.png"); 
+        ImagePath {mustBeFile} = fullfile(currentProject().RootFolder,"Images","MLforRegression.png"); 
     end
 
     properties (Access = private)

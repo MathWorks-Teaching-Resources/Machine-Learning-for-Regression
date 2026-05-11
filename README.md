@@ -4,7 +4,7 @@
 
 [![View on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/95903-machine-learning-for-regression) or [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj&file=README.mlx)
 
-[![MATLAB Versions Tested](https://img.shields.io/endpoint?url=https://mathworks-teaching-resources.github.io/machine-learning-for-regression/TestedWith.json)](https://MathWorks-Teaching-Resources.github.io/machine-learning-for-regression)
+[![MATLAB Versions Tested](https://img.shields.io/endpoint?url=https://mathworks-teaching-resources.github.io/Machine-Learning-for-Regression/TestedWith.json)](https://MathWorks-Teaching-Resources.github.io/Machine-Learning-for-Regression)
 
 **Curriculum Module**
 
