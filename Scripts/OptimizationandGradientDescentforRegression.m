@@ -1,5 +1,5 @@
 %[text] # Optimization and Gradient Descent for Regression
-%[text] [⇦ Main Menu](file:MainMenu.m)
+%[text] [⇦ Main Menu](file:../MainMenu.m)
 %[text] This live script treats regression as an optimization problem and uses gradient descent as the main example of how machine learning models are trained iteratively.
 %[text]{"align":"center"} ![Optimization by gradient descent](text:image:4dae)
 %[text:tableOfContents]{"heading":"Table of Contents"}
@@ -40,7 +40,7 @@ CheckAnswer("Exercise1","Select")  %[control:dropdown:25bc]{"position":[25,33]}
 %[text] For a fixed dataset, minimizing SSE and minimizing MSE give the same best-fit parameters because MSE is just SSE divided by the constant $n${"altText":"n"}. In this lesson, we use MSE as the cost function because it stays on a per-observation scale and is easier to compare across datasets.
 %[text] For a straight-line model, the predictions are:
 %[text]{"align":"center"} $ \\hat{y}\_i = \\theta\_1 x\_i + \\theta\_0 ${"altText":" \hat{y}\_i = \theta\_1 x\_i + \theta\_0 "}
-%[text] Substituting this model into the MSE formula makes the cost depend directly on the parameters $\\theta=(\\theta\_1,\\theta\_0)${"altText":"\theta=(\theta\_1,\theta\_0)"}:
+%[text] %[text:anchor:M_29e7] Substituting this model into the MSE formula makes the cost depend directly on the parameters $\\theta=(\\theta\_1,\\theta\_0)${"altText":"\theta=(\theta\_1,\theta\_0)"}:
 %[text]{"align":"center"} $ MSE(\\theta\_1,\\theta\_0) = \\frac{1}{n}\\sum\_{i=1}^{n}(y\_i - (\\theta\_1 x\_i + \\theta\_0))^2 ${"altText":" MSE(\theta\_1,\theta\_0) = \frac{1}{n}\sum\_{i=1}^{n}(y\_i - (\theta\_1 x\_i + \theta\_0))^2 "}
 %[text] The optimization question is now explicit: which slope and intercept make this cost as small as possible? For simple linear regression, ordinary least squares can often answer that question directly. For more complex models, however, the parameters must be updated gradually by an iterative method such as gradient descent.
 %%
@@ -247,7 +247,10 @@ CheckAnswer("Exercise4","Select") %[control:dropdown:1221]{"position":[25,33]}
 %[text] ## Further Exploration
 %[text] Review the [Additional Resources](file:../InstructorResources/AdditionalResources.m:M_6138) section to find more materials for further learning.
 %%
-%[text] [⇦ Return to Main Menu](file:MainMenu.m)
+%[text] [⇦ Return to Main Menu](file:../MainMenu.m)
+%%
+%[text] ## Help us Improve
+%[text] [Share your feedback](<matlab: ShareFeedback>) to help us improve this module.
 %%
 %[text] ## Local Helper Functions
 %[text] If you wish to see the implementation details, switch to **Output Inline** from the **View** tab.

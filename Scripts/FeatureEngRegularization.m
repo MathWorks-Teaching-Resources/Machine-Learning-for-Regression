@@ -1,5 +1,5 @@
 %[text] # Feature Engineering and Regularization
-%[text] [⇦ Main Menu](file:MainMenu.m)
+%[text] [⇦ Main Menu](file:../MainMenu.m)
 %[text] Feature engineering and regularization help improve regression models by refining how inputs are represented and how model complexity is controlled. In this lesson, you will transform and construct features, compare feature sets, select useful predictors, and apply Lasso and Ridge regression to improve generalization.
 %[text]{"align":"center"} ![](text:image:2aea)
 %[text:tableOfContents]{"heading":"Table of Contents"}
@@ -40,7 +40,7 @@ for k = 1:numel(Features)
     ApplyDefaultAxesStyle(Style,AxisMode="tight")
 
 end
-%[text] Better features often improve predictive performance, but they also increase model complexity. As Models become more flexible, they become more susceptible to overfitting. Later, we will explore regularization methods that help control model complexity while preserving predictive accuracy.
+%[text] Better features often improve predictive performance, but they also increase model complexity. As models become more flexible, they become more susceptible to overfitting. Later, we will explore regularization methods that help control model complexity while preserving predictive accuracy.
 %[text] ![Exercise icon](text:image:9caf) **Exercise 1.** Which statement best describes the relationship among feature engineering, feature transformation, and feature construction?
 %[text]     a. Feature engineering is the umbrella process, and transformation and construction are two distinct ways to engineer features.
 %[text]     b. Feature transformation mainly improves features that were already engineered.
@@ -60,6 +60,7 @@ CheckAnswer("ExerciseFeatureHierarchy","Select")  %[control:dropdown:2af3]{"posi
 %[text] Examine the shape of the data before selecting a transformation. Curved patterns often suggest polynomial features, exponential patterns may call for an exponential basis or a transformed response, and repeating patterns may require sine or cosine features with an appropriate period. The goal is to choose a representation that makes the relationship easier for a regression model to learn.
 DatasetChoice = "Cubic trend"; %[control:dropdown:a001]{"position":[17,30]}
   %[control:button:a002]{"position":[1,2]}
+if ~strcmp(DatasetChoice,"Select")
 [x,y,datasetLabel] = MakeManualDataset(DatasetChoice);
 Style = DefaultPlotStyle();
 figure
@@ -69,10 +70,14 @@ xlabel("x",Interpreter=Style.Interpreter)
 ylabel("y",Interpreter=Style.Interpreter)
 title("Selected Dataset: " + datasetLabel,Interpreter=Style.Interpreter)
 ApplyDefaultAxesStyle(Style,AxisMode="padded")
+else
+    warning ("Select a valid option.")
+    return
+end
 %[text] ![MATLAB Icon](text:image:5753) **Pro-tip**. Use the visual pattern to guess which transformation may produce a more linear relationship.
 %%
 %[text] ### 2. Test a Candidate Transformation
-%[text] ![Try this icon](text:image:9c8f) **Try**. Choose a transformation from the **Select a feature vector** dropdown menu. If you choose sine or cosine, set the period with the **Select a period** dropdown menu. Then click **Test Selected Transformation** to compare the raw and transformed fits.
+%[text] ![Try this icon](text:image:0cab) **Try**. Choose a transformation from the **Select a feature vector** dropdown menu. If you choose sine or cosine, set the period with the **Select a period** dropdown menu. Then click **Test Selected Transformation** to compare the raw and transformed fits.
 Features = GetFeatureLibrary();
 FeatureItems = string({Features.DisplayName});
 Periods = GetPeriodLibrary();
@@ -90,10 +95,8 @@ if exist("DatasetChoice","var")
     disp(summary)
 
 else
-
     warning("Select a dataset above.")
     return
-
 end
 %[text] **Reflect.** Does the transformation make the relationship more linear? Do the residuals look less structured after the transformation?
 %[text] ![Exercise icon](text:image:8caf) **Exercise 2.** What makes feature transformation different from feature construction in this lesson?
@@ -109,6 +112,7 @@ CheckAnswer("ExerciseTransformVsConstruct","Select")  %[control:dropdown:58ad]{"
 %[text] ![Try this icon](text:image:2800) **Try**. Choose a nonlinear dataset from the **Select a dataset** dropdown menu and click **Plot Dataset** to inspect its raw pattern.
 DatasetChoiceCV = "Sinusoidal pattern"; %[control:dropdown:a005]{"position":[19,39]}
   %[control:button:a006]{"position":[1,2]}
+if ~strcmp(DatasetChoiceCV,"Select")
 [x,y,cvLabel] = MakeCVDataset(DatasetChoiceCV);
 Style = DefaultPlotStyle();
 figure
@@ -118,6 +122,10 @@ xlabel("x",Interpreter=Style.Interpreter)
 ylabel("y",Interpreter=Style.Interpreter)
 title("Selected Dataset: " + cvLabel,Interpreter=Style.Interpreter)
 ApplyDefaultAxesStyle(Style,AxisMode="padded")
+else
+    warning("Select a valid option.")
+    return
+end
 %%
 %[text] ### 2. Evaluate Candidate Transformations
 %[text] A model with the lowest training error is not necessarily the best model. Cross-validation estimates how well each transformation is expected to perform on unseen data and provides a more reliable basis for comparison.
@@ -311,7 +319,7 @@ disp("Best model formula: " + Analysis.BestFormula)
 %[text] ### Feature Selection with Stepwise Regression
 %[text] Stepwise regression searches a candidate pool of engineered predictors by repeatedly adding or removing terms according to a selection criterion. Here, the candidate pool is the full set of engineered features. In this particular example, we begin with the following model:
 %[text]{"align":"center"} $y = x + z + x^2 + x^3 + sinx + \\cos(x) + x\_z + \\log(x) + \\sqrt{x}${"altText":"y = x + z + x^2 + x^3 + sinx + \cos(x) + x\_z + \log(x) + \sqrt{x}"}
-%[text] Stepwise regression can be useful for exploring candidate predictors, but it is a greedy search procedure. Because it repeatedly evaluates many Models, it can be unstable and may select different features when the data changes slightly.
+%[text] Stepwise regression can be useful for exploring candidate predictors, but it is a greedy search procedure. Because it repeatedly evaluates many models, it can be unstable and may select different features when the data changes slightly.
 %[text] For this reason, modern workflows often combine domain knowledge, validation data, and regularization methods such as Lasso rather than relying exclusively on stepwise selection.
 %[text] ![Try this icon](text:image:071d) **Try**. Click **Run Stepwise Model** to evaluate the selected model on the validation split.
   %[control:button:81a1]{"position":[1,2]}
@@ -331,7 +339,7 @@ disp(table(["Train"; "Validation"],[mseTrStep; mseVaStep],VariableNames=["Split"
 %[text] ## From Feature Selection to Regularization
 %[text] Stepwise regression reduces model complexity by selecting a subset of engineered features. However, it does so through a sequence of discrete include-or-exclude decisions, which can make the final model sensitive to changes in the training data, particularly when predictors are highly correlated.
 %[text] Regularization takes a different approach. Instead of removing predictors, it modifies the optimization objective by adding a penalty term that discourages large regression coefficients. This penalty reduces the influence of less important predictors and helps improve generalization to new data.
-%[text] If we start with the linear regression optimization objective ( [$\\star${"altText":"\star"}](file:./OptimizationandGradientDescentforRegressionSoln.m:M_29e7)),
+%[text] If we start with the linear regression optimization objective ( [$\\star${"altText":"\star"}](file:./OptimizationandGradientDescentforRegression.m:M_29e7)),
 %[text]{"align":"center"} $J(\\theta\_1,\\theta\_0) = \\frac{1}{n} \\sum\_{i=1}^{n} (\\theta\_1x\_i+\\theta\_0-y\_i)^2${"altText":"J(\theta\_1,\theta\_0) = \frac{1}{n} \sum\_{i=1}^{n} (\theta\_1x\_i+\theta\_0-y\_i)^2"} ,
 %[text] regularization adds a penalty term controlled by the regularization parameter, $\\lambda${"altText":"\lambda"} :
 %[text]{"align":"center"} **Regularization Expression Generalized**: $J(\\theta) = \\frac{1}{n} \\sum\_{i=1}^{n} (\\hat y\_i-y\_i)^2 + \\lambda \\cdot \\text{Penalty}${"altText":"J(\theta) = \frac{1}{n} \sum\_{i=1}^{n} (\hat y\_i-y\_i)^2 + \lambda \cdot \text{Penalty}"}
@@ -413,7 +421,7 @@ PlotSlicePredictions( ...
     "Final Fits from Lasso and Ridge",Style)
 %%
 %[text] ## Summary
-%[text] In this lesson, we explored how feature engineering can improve regression Models by changing how predictors are represented. We compared feature transformations using cross-validation, constructed richer feature sets using polynomial, trigonometric, and interaction terms, and evaluated their impact on model performance. Finally, you examined feature selection and regularization techniques, including stepwise regression, Lasso, and Ridge, to balance model flexibility with generalization.
+%[text] In this lesson, we explored how feature engineering can improve regression models by changing how predictors are represented. We compared feature transformations using cross-validation, constructed richer feature sets using polynomial, trigonometric, and interaction terms, and evaluated their impact on model performance. Finally, you examined feature selection and regularization techniques, including stepwise regression, Lasso, and Ridge, to balance model flexibility with generalization.
 %[text] **Key Takeaways**
 %[text] - Feature engineering is the umbrella process; feature transformation and feature construction are two different ways to engineer predictors.
 %[text] - Feature transformations can reveal relationships that are difficult to model using raw predictors alone by re-expressing one predictor.
@@ -424,7 +432,10 @@ PlotSlicePredictions( ...
 %[text] ## Further Exploration
 %[text] Review the [Additional Resources](file:../InstructorResources/AdditionalResources.m:M_0e5b) section to find more materials for further learning.
 %%
-%[text] [⇦ Return to Main Menu](file:MainMenu.m)
+%[text] [⇦ Return to Main Menu](file:../MainMenu.m)
+%%
+%[text] ## Help us Improve
+%[text] [Share your feedback](<matlab: ShareFeedback>) to help us improve this module.
 %%
 %[text] ## Local Helper Functions
 %[text] If you wish to see the implementation details, switch to **Output Inline** from the **View** tab.
@@ -1305,7 +1316,7 @@ end
 %[text:image:5753]
 %   data: {"align":"baseline","height":20,"src":"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAcCAYAAACZOmSXAAACP0lEQVR42mNgoCLIy8vzys\/Pf15QUNDNQE9QWFioBLT4CxD\/B2GgA5LoZjnQwi0wi6H4TVlZGS89LA5FsxiGK2hqcW5urijQkidAfA+L5S\/S0tJYaWU3I9CCjUC8GYg\/YfM9MBH60yq4G6GW1OEIdhBeT1VLQUEJNLQDavg2IJ6Kx\/IfwJQvQLGlDQ0NbECDsoEGXoEa\/BUYrDpA+gMey0FBH0+RxdnZ2fJAg26gGVwKdEwBPouheCslFgsDDbiDZuC2kpISbiD9lAjLfwILISFyE9YKNMPugwxDSnDE4GSiLQwNDWUGxSfUcjkgPgU15DMQ6xUVFamBEhMJlu8nqowGWtoCLThAmqYlJCRwAAsTdmD0zgTy\/UBsIH2GBItB+C\/IExgWggwHSkQB8V4g\/odF4zmgg1Rh6oGOmESixdiLW6BBlUDBdwQ0\/QCGiC80CnLItBiEr6JYXlxcLAItInFp+AbE7lCHBgDZfyiw\/D8wygwxymho4fENTfFnoLgDksU\/KbEYivtxtURApdVlqKK7QFfqQ4M6HIh\/UcFicD0PSmNYHQBNfMWZmZmCUB8XQFMqqZaAsmQNKFsCPWUFpBciJeYogtkuKyuLB2h3EFDzJhItfgZMoLo42nigqvcgSfU20BGLSLBYCU\/jQx9UJAPVmBBte3l5OT8RWfIrMYbm5OQogqKE1DK+FV8JBsoRxJqFM9HhsVwciL\/jsLyQHi3V+VgsrmGgBwAGrRFyHJNUVVLJATuBli4FYnVKzAEAi4Bewge+mbwAAAAASUVORK5CYII=","width":23}
 %---
-%[text:image:9c8f]
+%[text:image:0cab]
 %   data: {"align":"baseline","height":26,"src":"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAApCAYAAAAiT5m3AAADOElEQVR42r1XSWgUQRSNGndR3Ii7V\/EmCCp4DaIe1Oh4EMHBwMjsq47Eg+OOJ0VIICAeFAIeXEADHgyoqChE1ASNhISAxH0jg5gxq+\/FX1A009PTM93T8OiuX7\/q1f+\/+tevqqoCTyKRWBmNRo8Cj4GPwF++I5HII7zT8Xh8eZWTTzgcnh6Lxc5j8kFgHMgCT4G7wBPgl8j\/YBGnfT7f1LJJg8HgQrGQE3diAXVciK5DIsi3o7+devh+4Pf755dMmslkpmGih0LaiHa1hf5k6J0T\/TYrfdMHKz8pFjTr1kFWD9ltvJ8Bt\/Dt1d0rYeG4Y7ZJMbAG+A300HLKuHkw2SuxKAe8lQ3Gdjv6llLP4\/FMQfs1MMBQ2SUOyaoPihur0X4BDGEDHVGLYbwhawCG6QG6W6yu43jo+uwSt3IyWLlA2vt09+F7CwlDodAaaZ+Q\/j3inZn0GENil\/gd0Ke1rwEjgUBgDqzYIe4lBiBbkkqlZov7r2hjXtLldom\/0LVa+x7QK9+NGjHduUvkfcAdbUwb0G+XuNtg8WV6QeLXbCDeKzo9QJM2phPosEt8ExijG9nG5NuKJK6VTTeXrofudbvEh2TS49r\/eakQMeQXNV2v9Nfbzc9c8U\/GWv2LKkmYEat+r9c7Q+L9nZvOdhLBhOF86c+MWJ5JkLVIX6jUdM1Jbsgk3NU1RRBPHCzQ2crxZR0U3CBC8saKGO3NCNNGx85kpk4QPLfaXJr8jGPkKs4FfqesJv9kcP1OvFeXa70Z8Ygmz1KWTCYX4fuDqlAQhnUVIWafQfesXjjgF5zlCrGWSBQuyOm1nuEARqGTqRgxKxejrm1iYL+URKPFEktJrGSDpRJ3aYlGYRhFwjK8T+lyle+1yrUsYjMM5ZG9l0tBzk3iYvGfWE6XVWYniyvEci1RgjEpZwP6Itwi7jfppHy31Mz3HSeGNZvw8aOAUs5h0olUqqqPFVIhjlcI34wXsMMuWWhEb76ibwPw1U1ibmCzwm+tdil3HEyfhcrdBhetbrW6pHe5RNxiVeTXukTcVEyevupCjA9YEqfT6XlyGXOKuINnQ1GnEy9y6uJeBuFn3qXxxyzmnP8Amz0wy7TM4YgAAAAASUVORK5CYII=","width":19}
 %---
 %[control:dropdown:a003]

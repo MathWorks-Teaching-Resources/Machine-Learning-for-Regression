@@ -1,5 +1,5 @@
 %[text] %[text:anchor:T_BB73E10C] # Decision Trees and Ensemble Methods
-%[text] [⇦ Main Menu](file:MainMenu.m)
+%[text] [⇦ Main Menu](file:../MainMenu.m)
 %[text] This script supports the train-and-evaluate part of the machine learning workflow. After building candidate features and controlling complexity, the next question is whether a tree-based model can capture patterns that a single global equation still misses.
 %[text]{"align":"center"} ![A decision tree](text:image:2549)
 %[text:tableOfContents]{"heading":"Table of Contents"} %[text:anchor:M_597CA885]
@@ -321,7 +321,10 @@ CheckAnswer("Exercise3","Select"); %[control:dropdown:0db3]{"position":[25,33]}
 %[text] ## Further Exploration
 %[text] Review the [Additional Resources](file:../InstructorResources/AdditionalResources.m:M_080d) section to find more materials for further learning.
 %%
-%[text] [⇦ Return to Main Menu](file:MainMenu.m)
+%[text] [⇦ Return to Main Menu](file:../MainMenu.m)
+%%
+%[text] ## Help us Improve
+%[text] [Share your feedback](<matlab: ShareFeedback>) to help us improve this module.
 %%
 %[text] %[text:anchor:H_0AAABA39] ## Local Helper Functions
 %[text] If you wish to see the details of the code, on the MATLAB toolstrip select **View** \> **Output Inline**. Alternatively, select **Output Inline** using the icon ![live script output inline icon](text:image:0cdf) at the top right of the Live Editor pane.
@@ -668,8 +671,10 @@ arguments
     options.EdgeColor double = []
     options.FaceColor double = []
     options.FontSize (1,1) double = Style.TreeNodeFontSize
-    options.Interpreter = string(Style.Interpreter)
+    options.Interpreter = "latex"
     options.Padding (1,2) double = [0.018 0.016]
+    options.Kind string = "branch"
+    options.CriterionAbove (1,1) logical = false
 end
 
 axesBackgroundColor = GetAxesBackgroundColor(Ax);
@@ -691,15 +696,29 @@ if ~isempty(options.FaceColor)
     faceColor = options.FaceColor;
 end
 
-interpreter = char(options.Interpreter);
-labelExtent = MeasureTextExtent(Ax,pos,string(label),options.FontSize,interpreter);
+interpreter = "latex";
+nodeLabel = string(label);
+criterionLabel = "";
+if options.CriterionAbove
+    criterionLabel = nodeLabel;
+    nodeLabel = "$\mathrm{SPLIT}$";
+elseif options.Kind == "leaf" && ~isnan(str2double(nodeLabel))
+    nodeLabel = "$\mathbf{" + nodeLabel + "}\ \mathrm{MW}$";
+end
+
+labelExtent = MeasureTextExtent(Ax,pos,nodeLabel,options.FontSize,interpreter);
 xPad = options.Padding(1) * abs(diff(xlim(Ax)));
 yPad = options.Padding(2) * abs(diff(ylim(Ax)));
 nodeWidth = max(options.Width,labelExtent(3) + 2*xPad);
 nodeHeight = max(options.Height,labelExtent(4) + 2*yPad);
 
 rectangle(Ax,Position=[pos(1)-nodeWidth/2 pos(2)-nodeHeight/2 nodeWidth nodeHeight],EdgeColor=edgeColor,FaceColor=faceColor,LineWidth=lineWidth,Curvature=0.1,Clipping="off")
-text(Ax,pos(1),pos(2),string(label),HorizontalAlignment="center",VerticalAlignment="middle",FontSize=options.FontSize,Interpreter=interpreter,Clipping="off")
+text(Ax,pos(1),pos(2),nodeLabel,HorizontalAlignment="center",VerticalAlignment="middle",FontWeight="bold",FontSize=options.FontSize,Interpreter=interpreter,Clipping="off")
+if strlength(criterionLabel) > 0
+    criterionOffset = nodeHeight/2 + 1.5*yPad;
+    drawBranchLabel(Ax,[pos(1) pos(2) + criterionOffset],criterionLabel,Style, ...
+        FontSize=options.FontSize,Interpreter="latex")
+end
 
 end
 %%
@@ -711,7 +730,7 @@ arguments
     label
     Style (1,1) struct
     options.FontSize (1,1) double = Style.TreeBranchLabelFontSize
-    options.Interpreter = string(Style.Interpreter)
+    options.Interpreter = "latex"
     options.Padding (1,2) double = [0.012 0.014]
 end
 
@@ -768,6 +787,11 @@ arguments
     options.ShowTitle (1,1) logical = true
     options.NodeFontSize (1,1) double = Style.TreeNodeFontSize
     options.BranchLabelFontSize (1,1) double = Style.TreeBranchLabelFontSize
+    options.AutoLayout (1,1) logical = true
+end
+
+if options.AutoLayout
+    TreeSpec = LayoutTreeSpec(TreeSpec);
 end
 
 cla(Ax)
@@ -792,9 +816,9 @@ end
 for k = 1:numel(TreeSpec.Nodes)
     node = TreeSpec.Nodes(k);
     nodeName = string(node.Name);
-    nodeWidth = 0.18;
-    nodeHeight = 0.08;
-    nodeInterpreter = string(Style.Interpreter);
+    nodeWidth = 0.22;
+    nodeHeight = 0.11;
+    nodeInterpreter = "latex";
 
     if isfield(node,"Width") && ~isnan(node.Width)
         nodeWidth = node.Width;
@@ -808,8 +832,12 @@ for k = 1:numel(TreeSpec.Nodes)
         nodeInterpreter = string(node.Interpreter);
     end
 
-    if string(node.Kind) == "leaf"
+    nodeKind = string(node.Kind);
+    isCriterion = nodeKind == "branch" && contains(string(node.Label),["<" ">" "="]);
+    if nodeKind == "leaf"
         edgeColor = GetSeriesColor(Ax,Style.TreeLeafNodeSeriesIndex);
+        nodeWidth = max(nodeWidth,0.26);
+        nodeHeight = max(nodeHeight,0.14);
     else
         edgeColor = GetSeriesColor(Ax,Style.TreeBranchNodeSeriesIndex);
     end
@@ -819,8 +847,10 @@ for k = 1:numel(TreeSpec.Nodes)
         Width=nodeWidth, ...
         Height=nodeHeight, ...
         EdgeColor=edgeColor, ...
-        FontSize=options.NodeFontSize, ...
-        Interpreter=nodeInterpreter)
+        FontSize=max(options.NodeFontSize,12), ...
+        Interpreter=nodeInterpreter, ...
+        Kind=nodeKind, ...
+        CriterionAbove=isCriterion)
 end
 
 for k = 1:numel(TreeSpec.Branches)
@@ -831,6 +861,79 @@ for k = 1:numel(TreeSpec.Branches)
 
     drawBranchLabel(Ax,branch.LabelPosition,branch.Label,Style,FontSize=options.BranchLabelFontSize)
 end
+
+end
+%%
+function TreeSpec = LayoutTreeSpec(TreeSpec)
+
+nodeNames = string({TreeSpec.Nodes.Name});
+nodeCount = numel(TreeSpec.Nodes);
+parentIndex = zeros(nodeCount,1);
+children = cell(nodeCount,1);
+
+for branchIndex = 1:numel(TreeSpec.Branches)
+    branch = TreeSpec.Branches(branchIndex);
+    startIndex = find(nodeNames == string(branch.StartNode),1);
+    endIndex = find(nodeNames == string(branch.EndNode),1);
+    parentIndex(endIndex) = startIndex;
+    children{startIndex}(end + 1) = endIndex;
+end
+
+rootIndex = find(parentIndex == 0,1);
+depth = nan(nodeCount,1);
+depth(rootIndex) = 0;
+pending = rootIndex;
+while ~isempty(pending)
+    nodeIndex = pending(1);
+    pending(1) = [];
+    childIndices = children{nodeIndex};
+    depth(childIndices) = depth(nodeIndex) + 1;
+    pending = [pending childIndices]; %#ok<AGROW>
+end
+
+leafIndices = find(cellfun(@isempty,children));
+xRange = TreeSpec.XLim;
+yRange = TreeSpec.YLim;
+xMargin = 0.10 * diff(xRange);
+yMargin = 0.12 * diff(yRange);
+leafX = linspace(xRange(1) + xMargin,xRange(2) - xMargin,numel(leafIndices));
+xPositions = nan(nodeCount,1);
+xPositions(leafIndices) = leafX;
+
+assignNodeX(rootIndex)
+maxDepth = max(depth);
+if maxDepth == 0
+    yPositions = mean(yRange) * ones(nodeCount,1);
+else
+    yPositions = yRange(2) - yMargin - depth / maxDepth * (diff(yRange) - 2 * yMargin);
+end
+
+for nodeIndex = 1:nodeCount
+    TreeSpec.Nodes(nodeIndex).Position = [xPositions(nodeIndex) yPositions(nodeIndex)];
+end
+
+for branchIndex = 1:numel(TreeSpec.Branches)
+    branch = TreeSpec.Branches(branchIndex);
+    startIndex = find(nodeNames == string(branch.StartNode),1);
+    endIndex = find(nodeNames == string(branch.EndNode),1);
+    midpoint = mean([TreeSpec.Nodes(startIndex).Position; TreeSpec.Nodes(endIndex).Position],1);
+    TreeSpec.Branches(branchIndex).LabelPosition = midpoint + [0 0.035 * diff(yRange)];
+end
+
+    function xPosition = assignNodeX(nodeIndex)
+        if ~isnan(xPositions(nodeIndex))
+            xPosition = xPositions(nodeIndex);
+            return
+        end
+
+        childIndices = children{nodeIndex};
+        childX = zeros(size(childIndices));
+        for childIndex = 1:numel(childIndices)
+            childX(childIndex) = assignNodeX(childIndices(childIndex));
+        end
+        xPosition = mean(childX);
+        xPositions(nodeIndex) = xPosition;
+    end
 
 end
 %%

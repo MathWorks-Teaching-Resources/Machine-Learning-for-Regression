@@ -1,4 +1,5 @@
 %[text] %[text:anchor:T_DEF03274] # Machine Learning for Regression
+%[text] MATLAB R2024b or older: download the [legacy MLX version](https://github.com/MathWorks-Teaching-Resources/Machine-Learning-for-Regression/releases/tag/mlx).
 %[text] %[text:anchor:H_053613DF] ## Information
 %[text] This curriculum module contains interactive [MATLAB® live scripts](https://www.mathworks.com/products/matlab/live-editor.html) that introduce machine learning for regression through baseline modeling, model improvement, tree-based methods, and optimization.
 %[text]{"align":"center"} ![Graph from cross-validation showing the machine learning model fitting the data best](text:image:7a34)
@@ -19,29 +20,29 @@
 %[text] #### **On MATLAB® Online**™:
 %[text] Use the [![Open in MATLAB Online Button](text:image:08c1)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/Machine-Learning-for-Regression&project=MLforRegression.prj) link to download the module. You will be prompted to log in or create a MathWorks account. The project will be loaded, and you will see an app with several navigation options to get you started.
 %[text] #### **On Desktop:**
-%[text] Download or clone this repository. Open MATLAB, navigate to the folder containing these scripts and double-click on [MLforRegression.prj](matlab:open('matlab:open(''MLforRegression.prj'')')). It will add the appropriate files to your MATLAB path and open an app that asks you where you would like to start. 
+%[text] Download or clone this repository. Open MATLAB, navigate to the folder containing these scripts and double-click on [MLforRegression.prj](file:MLforRegression.prj). It will add the appropriate files to your MATLAB path and open an app that asks you where you would like to start.
 %[text] Ensure you have all the required products ([listed below](internal:H_E850B4FF)) installed. If you need to include a product, add it using the Add-On Explorer. To install an add-on, go to the **Home** tab and select  ![Add-ons icon](text:image:33a5) **Add-Ons** \> **Get Add-Ons**. 
 %[text] 
 %[text] %[text:anchor:H_E850B4FF] ### Products
 %[text] MATLAB® is used throughout. Tools from Statistics and Machine Learning Toolbox™, and System Identification Toolbox™ are used frequently as well.
 %[text] 
 %[text] %[text:anchor:H_577C7603] ## Scripts
-%[text] ### [Overview of Machine Learning for Regression](file:MLOverview.m)
+%[text] ### [Overview of Machine Learning for Regression](file:Scripts/MLOverview.m)
 %[text:table]{"columnWidths":[-1,593,-1],"ignoreHeader":true}
 %[text] | <p></p><p>![Regression learner app \n](text:image:85a0)</p> | <p>**In this script, students will...**</p><p>$\\bullet${"altText":"\bullet"} recognize when simple linear regression is inadequate for real‑world data.</p><p>$\\bullet${"altText":"\bullet"} evaluate and compare regression models using residuals and cross‑validation to assess generalization.</p><p>$\\bullet${"altText":"\bullet"} describe the machine‑learning regression pipeline and its goal of generalization.</p> | <p>**Academic disciplines**</p><p>$\\bullet${"altText":"\bullet"} Math</p><p>$\\bullet${"altText":"\bullet"} Statistics</p><p>$\\bullet${"altText":"\bullet"} Data Science</p><p>$\\bullet${"altText":"\bullet"} Machine Learning</p> |
 %[text] | --- | --- | --- |
 %[text:table]
-%[text] ### [Optimization and Gradient Descent for Regression](file:OptimizationandGradientDescentforRegression.m)
+%[text] ### [Optimization and Gradient Descent for Regression](file:Scripts/OptimizationandGradientDescentforRegression.m)
 %[text:table]{"columnWidths":[-1,585,171],"ignoreHeader":true}
 %[text] | ![Optimization by gradient desceent](text:image:4510) | <p>**In this script, students will...**</p><p>$\\bullet${"altText":"\bullet"} explain how regression training can be framed as an optimization problem.</p><p>$\\bullet${"altText":"\bullet"} compare SSE, MSE, and RMSE to interpret model prediction error.</p><p>$\\bullet${"altText":"\bullet"} apply gradient descent updates to reduce a regression model’s cost function.</p><p>$\\bullet${"altText":"\bullet"} evaluate how learning rate and iteration count affect convergence, oscillation, and model improvement.</p><p></p> | <p>**Academic disciplines**</p><p>$\\bullet${"altText":"\bullet"} AI and Machine Learning</p><p>$\\bullet${"altText":"\bullet"} Data Science</p><p>$\\bullet$ Statistics</p><p>$\\bullet$ Engineering</p> |
 %[text] | --- | --- | --- |
 %[text:table]
-%[text] ### [Feature Engineering and Regularization](file:FeatureEngRegularization.m)
+%[text] ### [Feature Engineering and Regularization](file:Scripts/FeatureEngRegularization.m)
 %[text:table]{"columnWidths":[-1,592,164],"ignoreHeader":true}
 %[text] | ![](text:image:6e89) | <p>**In this script, students will...**</p><p>$\\bullet${"altText":"\bullet"} apply feature transformations and compare engineered feature sets.</p><p>$\\bullet${"altText":"\bullet"} use stepwise selection, Lasso, and Ridge to control model complexity.</p><p>$\\bullet${"altText":"\bullet"} connect richer feature representations to generalization and interpretability.</p> | <p>**Academic disciplines**</p><p>$\\bullet${"altText":"\bullet"} AI and Machine Learning</p><p>$\\bullet$ Engineering</p><p>$\\bullet$ Applied Mathematics</p> |
 %[text] | --- | --- | --- |
 %[text:table]
-%[text] ### [Decision Trees and Ensemble Methods](file:DecisionTreesandEnsembleMethods.m)
+%[text] ### [Decision Trees and Ensemble Methods](file:Scripts/DecisionTreesandEnsembleMethods.m)
 %[text:table]{"columnWidths":[-1,588,169],"ignoreHeader":true}
 %[text] | ![A decision tree](text:image:27aa) | <p>**In this script, students will...**</p><p>$\\bullet${"altText":"\bullet"} compare different regression models and identify when each may be useful.</p><p>$\\bullet$ explain how model structure affects predictions and interpretability.</p><p>$\\bullet$ use visualizations and diagnostics to choose an appropriate model for a prediction task.</p> | <p>**Academic disciplines**</p><p>$\\bullet${"altText":"\bullet"} AI and Machine Learning</p><p>$\\bullet${"altText":"\bullet"} Data Science</p><p>$\\bullet$ Statistics</p><p>$\\bullet$ Engineering</p><p></p> |
 %[text] | --- | --- | --- |
@@ -55,7 +56,7 @@
 %[text:table]
 %[text] ### [Regression Basics](https://www.mathworks.com/matlabcentral/fileexchange/93435-regression-basics)
 %[text:table]{"columnWidths":[-1,262],"ignoreHeader":true}
-%[text] | ![Regression surface](text:image:41db) | <p>**Available on:**</p><p>[![MATLAB File Exchange Icon](text:image:48f1)](https://www.mathworks.com/matlabcentral/fileexchange/93435-regression-basics)[![OpenInMATLABOnline@3x.png](text:image:12dc)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/regression-basics&project=RegressionBasics.prj&file=README.mlx)</p><p>[GitHub](https://github.com/MathWorks-Teaching-Resources/Regression-Basics)</p> |
+%[text] | ![Regression surface](text:image:41db) | <p>**Available on:**</p><p>[![MATLAB File Exchange Icon](text:image:48f1)](https://www.mathworks.com/matlabcentral/fileexchange/93435-regression-basics)[![OpenInMATLABOnline@3x.png](text:image:12dc)](https://matlab.mathworks.com/open/github/v1?repo=MathWorks-Teaching-Resources/regression-basics&project=RegressionBasics.prj&file=README.m)</p><p>[GitHub](https://github.com/MathWorks-Teaching-Resources/Regression-Basics)</p> |
 %[text] | --- | --- |
 %[text:table]
 %[text] 
@@ -66,7 +67,9 @@
 %[text] Looking for more? Find an issue? Have a suggestion? Please contact the [MathWorks Educator Content Development Team](mailto:%20onlineteaching@mathworks.com). If you want to contribute directly to this project, you can find information about how to do so in the [CONTRIBUTING.md](https://github.com/MathWorks-Teaching-Resources/Machine-Learning-for-Regression/blob/release/CONTRIBUTING.md) page on GitHub.
 %[text] 
 %[text] *©* Copyright 2026 The MathWorks, Inc
-%[text] 
+%%
+%[text] ## Help us Improve
+%[text] [Share your feedback](<matlab: ShareFeedback>) to help us improve this module.
 
 %[appendix]{"version":"1.0"}
 %---

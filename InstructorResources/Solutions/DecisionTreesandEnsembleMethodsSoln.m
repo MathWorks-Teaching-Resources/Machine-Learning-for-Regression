@@ -1,5 +1,5 @@
 %[text] %[text:anchor:T_BB73E10C] # Decision Trees and Ensemble Methods
-%[text] [⇦ Main Menu](file:MainMenu.m)
+%[text] [⇦ Main Menu](file:../../MainMenu.m)
 %[text] This script supports the train-and-evaluate part of the machine learning workflow. After building candidate features and controlling complexity, the next question is whether a tree-based model can capture patterns that a single global equation still misses.
 %[text]{"align":"center"} ![A decision tree](text:image:85d0)
 %[text:tableOfContents]{"heading":"Table of Contents"} %[text:anchor:M_597CA885]
@@ -10,7 +10,7 @@
 %[text] The ![Try this icon](text:image:7d42) and ![Exercise icon](text:image:807a) icons mark two different kinds of interactive activities in this script. The ![Try this icon](text:image:03dc) usually marks an exploration activity that helps you visualize a concept introduced in the lesson. The ![Exercise icon](text:image:5846) marks an activity that checks your understanding and may be used for grading or completion checks by your instructor.
 %%
 %[text] ## Why Tree-Based Models?
-%[text] A simple linear model is still a useful baseline, but many regression problems are better described by local rules or combinations of local rules. Regression trees divide the predictor space into regions using a sequence of decision rules. For example, a tree might first split on temperature and then, within one temperature range, split again on humidity. Because later decisions depend on earlier ones, trees naturally capture nonlinear behavior and interactions between predictors. However, regression trees are prone to overfitting, leading to models that can be highly sensitive to the training data and may generalize poorly to new observations. Ensemble methods address this limitation by combining predictions from many trees, reducing variability, improving robustness, and often achieving better predictive performance than a single tree. A single tree is useful when interpretability is important, while an ensemble is often preferred when prediction accuracy and stability are the primary goals.
+%[text] A simple linear model is still a useful baseline, but local rules or combinations of local rules better describe many regression problems. Regression trees divide the predictor space into regions using a sequence of decision rules. For example, a tree might first split on temperature and then, within one temperature range, split again on humidity. Because later decisions depend on earlier ones, trees naturally capture nonlinear behavior and interactions between predictors. However, regression trees are prone to overfitting, leading to models that can be highly sensitive to the training data and may generalize poorly to new observations. Ensemble methods address this limitation by combining predictions from many trees, reducing variability, improving robustness, and often achieving better predictive performance than a single tree. A single tree is useful when interpretability is important, while an ensemble is often preferred when prediction accuracy and stability are the primary goals.
 %[text] Then your three questions become:
 %[text] 1. How does a regression tree make predictions by following a sequence of decision rules?
 %[text] 2. How can those decision rules capture nonlinear patterns and predictor interactions?
@@ -28,7 +28,7 @@
 %[text:table]
 %%
 %[text] ### A Quick Baseline Reminder
-%[text] A single global model is still a helpful reference because it tells us what a simple approach can and cannot explain. The [Feature Engineering and Regularization](file:FeatureEngRegularization.m) lesson handles linear-model refinement in detail, so here we will treat the linear model only as a baseline for comparison.
+%[text] A single global model is still a helpful reference because it tells us what a simple approach can and cannot explain. The [Feature Engineering and Regularization](file:../../Scripts/FeatureEngRegularization.m) lesson handles linear-model refinement in detail, so here we will treat the linear model only as a baseline for comparison.
 %[text] In this lesson, the focus is different: when patterns are segmented, thresholded, or strongly nonlinear, tree-based models often become the better next step.
 %[text] The comparison below highlights two different modeling decisions. In the **Feature Engineering Keeps a Global Fit** example, adding an appropriate feature allows a single regression model to capture the pattern in the data with low error. In the **Threshold Pattern Suggests a Tree** example, the data follow rule-based, threshold-like behavior that is difficult for a single regression model to represent, making a decision tree a more natural choice. Together, these examples show that improving a model may involve either engineering better features or selecting a different model family.
 %[text] ![Finger touching surface icon](text:image:62ba) **Try**. Click **Display Baseline Comparison**. 
@@ -90,11 +90,11 @@ disp("Predicted Load = " + compose("%.0f",InteractiveTree.Prediction) + " MW")
 CheckAnswer("Exercise1",6200) %[control:dropdown:4e16]{"position":[25,29]}
 %%
 %[text] #### Connecting Tree Structure to Model Predictions
-%[text] Regression trees can be viewed both as a collection of decision rules and as a fitted function. Showing these perspectives side by side helps connect each split to both a branching rule in the tree and a change in the model’s predictions. As additional splits are added, the tree grows more complex and the fitted curve becomes more detailed. This makes it easier to see how decision boundaries create distinct prediction regions.
+%[text] Regression trees can be viewed both as a collection of decision rules and as a fitted function. Showing these perspectives side by side helps connect each split to both a branching rule in the tree and a change in the model’s predictions. As additional splits are added, the tree grows more complex, and the fitted curve becomes more detailed. This makes it easier to see how decision boundaries create distinct prediction regions.
 %[text] ![Finger touching surface icon](text:image:3875) **Try**. Drag the **Number of Splits** slider to change the number of splits and observe how the fitted curve changes. As the tree grows, it can fit the training data more closely, but too many splits can overfit and may require pruning or validation-based model selection.
 DefaultStyle = InitializeDefaultStyle();
 [x,y] = GetLoadMayDayData();
-N =2; %[control:slider:53cf]{"position":[4,5]}
+N =3; %[control:slider:53cf]{"position":[4,5]}
 mdl = ShowRegressionTreeSideBySide(x,y,N,DefaultStyle);
 %%
 %[text] ### **Ensemble of Trees**
@@ -102,8 +102,8 @@ mdl = ShowRegressionTreeSideBySide(x,y,N,DefaultStyle);
 %[text] - **Bagging (bootstrap aggregation)** trains trees independently on different random subsets of the data and averages their predictions, reducing variance and improving stability.
 %[text] - **Boosting** trains trees sequentially, with each new tree focusing on correcting errors made by the current ensemble, reducing bias and improving accuracy.  \
 %[text] The animation below still emphasizes boosting so you can watch later trees correct earlier errors in sequence, but the comparison now includes bagging on the same data. This makes it easier to see the difference between averaging many independently fit trees and sequentially correcting residual error. While training error typically decreases as more trees are added, generalization should be evaluated using validation or holdout data rather than training error alone.
-%[text] In the top plot, the filled circles are the observed training data. The dashed line is the prediction from one single regression tree, used as a baseline. The bagging and boosting curves show how the ensemble prediction changes as more trees are added.
-%[text] In the summary, **bagging gain** and **boosting gain** mean the percent reduction in training MSE relative to that single-tree baseline. A positive value means the ensemble fit the training data better than one tree; a negative value means it did worse on training MSE for that setting.
+%[text] In the top plot, the filled circles are the observed training data. The dashed line is the prediction from a single regression tree, used as a baseline. The bagging and boosting curves show how the ensemble prediction changes as more trees are added.
+%[text] In summary, **bagging gain** and **boosting gain** mean the percent reduction in training MSE relative to that single-tree baseline. A positive value means the ensemble fits the training data better than one tree; a negative value means it did worse on training MSE for that setting.
 %[text] `NumTrees` is the number of trees included in the ensemble, while `MaxSplits` is the number of decision splits each individual tree is allowed to make, so it controls the complexity of each tree rather than the number of trees.
 %[text] ![Finger touching surface icon](text:image:568c) **Try**. Click **Fit Ensemble of Trees** to view an example that models the hourly electricity load in a single day.
 %[text] 1. Drag the **`NumTrees`** slider to increase the number of trees in the ensemble, then click **Fit Ensemble of Trees** to rerun this section.
@@ -128,7 +128,7 @@ ens = ShowEnsembleTreeDemo(x,y,NumTrees,NumSplits,DefaultStyle);
 %[text] ![Lightbulb Icon](text:image:0158) **Reflect**. How many trees do you think we need before the fit stabilizes? Will adding trees make the prediction more or less flexible? Why might the ensemble outperform a single tree?
 %%
 %[text] ### Connection to Feature Engineering and Regularization
-%[text] If our main problem is too many predictors rather than the wrong model family, return to the [Feature Engineering and Regularization](file:FeatureEngRegularization.m) lesson which focuses on stepwise regression, Lasso, and other ways to keep a linear model smaller and easier to generalize.
+%[text] If our main problem is too many predictors rather than the wrong model family, return to the [Feature Engineering and Regularization](file:../../Scripts/FeatureEngRegularization.m) lesson which focuses on stepwise regression, Lasso, and other ways to keep a linear model smaller and easier to generalize.
 %[text] In this lesson, we stay with a different question: when a linear baseline is still too rigid, does a single tree help, or do we need an ensemble of trees?
 %%
 %[text] ### Choosing Between a Baseline, a Tree, and an Ensemble
@@ -321,10 +321,13 @@ CheckAnswer("Exercise3","Ensemble of Trees"); %[control:dropdown:2b4a]{"position
 %[text] ## Further Exploration
 %[text] Review the [Additional Resources](file:../../InstructorResources/AdditionalResources.m:M_080d) section to find more materials for further learning.
 %%
-%[text] [⇦ Return to Main Menu](file:MainMenu.m)
+%[text] [⇦ Return to Main Menu](file:../../MainMenu.m)
+%%
+%[text] ## Help us Improve
+%[text] [Share your feedback](<matlab: ShareFeedback>) to help us improve this module.
 %%
 %[text] %[text:anchor:H_0AAABA39] ## Local Helper Functions
-%[text] If you wish to see the details of the code, on the MATLAB toolstrip select **View** \> **Output Inline**. Alternatively, select **Output Inline** using the icon ![live script output inline icon](text:image:4a93) at the top right of the Live Editor pane.
+%[text] If you wish to see the details of the code, on the MATLAB toolstrip select **View** \> **Output Inline**. Alternatively, select **Output Inline** using the icon ![live script output inline icon](text:image:0cdf) at the top right of the Live Editor pane.
 function Style = InitializeDefaultStyle()
 Style = DefaultPlotStyle();
 ApplyDefaultStyle(Style);
@@ -1559,6 +1562,6 @@ end
 %[control:dropdown:2b4a]
 %   data: {"defaultValue":"\"Ensemble of Trees\"","itemLabels":["Select","Linear Regression","Stepwise Regression","Regression Tree","Ensemble of Trees"],"items":["\"Select\"","\"Linear Regression\"","\"Stepwise Regression\"","\"Regression Tree\"","\"Ensemble of Trees\""],"label":"Select an answer.","run":"Section"}
 %---
-%[text:image:4a93]
+%[text:image:0cdf]
 %   data: {"align":"middle","height":24,"src":"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAjElEQVR42mP4\/\/8\/AwgnJiYapKamfgfS\/ynBUDMMYOYywBggiYcPH\/6nFIDMAJmFYQHIdmoBqFm4LZjrYPd\/gpoyGIPYVLeA5j6gmwUlJaVAxUlgDGKPBhFODaQG1QgIoqKtr\/6r99wlCYP0EG0BSMOWe\/9JwiA9oxaMWkBHC2ieD2iSk+lR6dOk2QIAjF+EgB\/BqfoAAAAASUVORK5CYII=","width":24}
 %---

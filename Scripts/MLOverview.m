@@ -1,5 +1,5 @@
 %[text] # Overview of Machine Learning for Regression
-%[text] [⇦ Main Menu](file:MainMenu.m)
+%[text] [⇦ Main Menu](file:../MainMenu.m)
 %[text] In this script, we explore why a single straight line fails to capture many real‑world regression problems and use machine learning models to represent curved, oscillatory, and nonstationary behavior. 
 %[text]{"align":"center"} ![Regression learner app](text:image:4eb2)
 %[text]{"align":"center"} 
@@ -94,7 +94,7 @@ switch SpecialFunc
         [x,y] = Unknown;
 end
 
-AX = "Select"; % Use this dropdown menu to select an axis on which to plot the data %[control:dropdown:3430]{"position":[6,14]}
+AX = "sigmoidal(S-Curve)"; % Use this dropdown menu to select an axis on which to plot the data %[control:dropdown:3430]{"position":[6,26]}
 plotDataByAxis(AX,x,y,SpecialFunc)
   % Click this button to plot the data %[control:button:45ad]{"position":[1,2]}
 %%
@@ -364,10 +364,13 @@ checkAnswer("Q3","Select"); %[control:dropdown:8a80]{"position":[18,26]}
 %[text] ## Further Exploration
 %[text] Review the [Additional Resources](file:../InstructorResources/AdditionalResources.m:M_2e47) section to find more materials for further learning.
 %%
-%[text] [⇦ Return to Main Menu](file:MainMenu.m)
+%[text] [⇦ Return to Main Menu](file:../MainMenu.m)
+%%
+%[text] ## Help us Improve
+%[text] [Share your feedback](<matlab: ShareFeedback>) to help us improve this module.
 %%
 %[text] ## Local Helper Functions
-%[text] If you wish to see the code details, on the MATLAB toolstrip select **View** \> **Output Inline**. Alternatively, select **Output Inline** using the icon ![Live script output inline icon](text:image:5b73) at the top right of the Live Editor pane.
+%[text] If you wish to see the code details, on the MATLAB toolstrip select **View** \> **Output Inline**. Alternatively, select **Output Inline** using the icon ![Live script output inline icon](text:image:9a02) at the top right of the Live Editor pane.
 function checkAnswer(questionID,userAnswer)
 
 % Primary correct answers
@@ -802,6 +805,6 @@ end
 %[control:button:4777]
 %   data: {"label":"Check Answer","run":"Section"}
 %---
-%[text:image:5b73]
+%[text:image:9a02]
 %   data: {"align":"middle","height":24,"src":"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAjElEQVR42mP4\/\/8\/AwgnJiYapKamfgfS\/ynBUDMMYOYywBggiYcPH\/6nFIDMAJmFYQHIdmoBqFm4LZjrYPd\/gpoyGIPYVLeA5j6gmwUlJaVAxUlgDGKPBhFODaQG1QgIoqKtr\/6r99wlCYP0EG0BSMOWe\/9JwiA9oxaMWkBHC2ieD2iSk+lR6dOk2QIAjF+EgB\/BqfoAAAAASUVORK5CYII=","width":24}
 %---
